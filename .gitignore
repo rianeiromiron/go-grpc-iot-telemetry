@@ -1,0 +1,26 @@
+# Go binaries and build output
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+dist/
+
+*.test
+server/server
+server/server.exe
+client/client
+client/client.exe
+
+# Coverage and profiling output
+coverage.out
+*.prof
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

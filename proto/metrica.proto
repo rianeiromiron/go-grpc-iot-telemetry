@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package metrica;
+
+option go_package = "proyecto3/proto/metrica";
+
+// 1. Servicio con Client-Side Streaming
+service TelemetriaService {
+    // Nota la palabra "stream" en la petición:
+    // Múltiples Peticiones (Stream) -> 1 Respuesta final
+    rpc RegistrarLecturas (stream LecturaSensor) returns (ResumenEstadistico);
+}
+
+// 2. Mensaje que el cliente enviará repetidamente en streaming
+message LecturaSensor {
+    string sensor_id = 1;
+    double temperatura = 2; // En grados Celsius
+    string timestamp = 3;
+}
+
+// 3. Respuesta final que el servidor calculará y devolverá al cerrar el stream
+message ResumenEstadistico {
+    int32 total_muestras = 1;
+    double temperatura_promedio = 2;
+    double temperatura_maxima = 3;
+    double temperatura_minima = 4;
+    string mensaje = 5;
+}
